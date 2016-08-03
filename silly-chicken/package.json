@@ -1,0 +1,33 @@
+{
+  "name": "silly-chicken",
+  "version": "1.0.0",
+  "description": "Alexa Skill: skilly chicken",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --recursive ./test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bsimanov/AlexaDevelopment.git"
+  },
+  "keywords": [
+    "silly",
+    "chicken",
+    "alexa",
+    "skill",
+    "alexa",
+    "skillset",
+    "alexa",
+    "silly",
+    "chicken"
+  ],
+  "author": "Boris S (bsimanov @ GitHub)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bsimanov/AlexaDevelopment/issues"
+  },
+  "homepage": "https://github.com/bsimanov/AlexaDevelopment#readme"
+}

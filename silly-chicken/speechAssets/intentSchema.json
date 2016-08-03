@@ -1,0 +1,30 @@
+{
+  "intents": [
+    {
+      "intent": "InformationIntent"
+    },
+    {
+      "intent": "JokeIntent"
+    },
+    {
+      "intent": "WhoIntent",
+       "slots": [
+        {
+          "name": "isOrAre",
+          "type": "PLURAL"
+        }]
+    },
+    {
+      "intent": "WhyIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}

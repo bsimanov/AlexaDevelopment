@@ -1,0 +1,21 @@
+InformationIntent a fact
+InformationIntent tell me a fact
+InformationIntent to tell me a fact
+InformationIntent give me a fact
+InformationIntent tell me trivia
+InformationIntent give me trivia
+InformationIntent give me some information
+InformationIntent tell me something
+InformationIntent give me something
+InformationIntent to tell me something
+InformationIntent to give me something
+JokeIntent to tell me a joke
+JokeIntent for a joke
+JokeIntent something funny
+JokeIntent to tell me something funny
+WhoIntent who {isOrAre} a chicken
+WhoIntent who {isOrAre} daniel
+WhoIntent who {isOrAre} the best
+WhyIntent why did the chicken cross the road
+WhyIntent why is the sky blue
+WhyIntent why did you say that
