@@ -26,11 +26,5 @@
   "bugs": {
     "url": "https://github.com/bsimanov/AlexaDevelopment/issues"
   },
-  "homepage": "https://github.com/bsimanov/AlexaDevelopment#readme",
-  "dependencies": {
-    "alexa-sdk": "^1.0.3"
-  },
-  "devDependencies": {
-    "chai": "^3.5.0"
-  }
+  "homepage": "https://github.com/bsimanov/AlexaDevelopment#readme"
 }

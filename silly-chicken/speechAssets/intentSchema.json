@@ -8,7 +8,7 @@
     },
     {
       "intent": "WhoIntent",
-       "slots": [
+      "slots": [
         {
           "name": "isOrAre",
           "type": "PLURAL"
