@@ -1,0 +1,36 @@
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "description": "Alexa Skill: hello world (playing with Alexa SDK/Unit testing)",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha --recursive ./test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bsimanov/AlexaDevelopment.git"
+  },
+  "keywords": [
+    "hello",
+    "world",
+    "alexa",
+    "skill",
+    "skillset"
+  ],
+  "author": "Boris S (bsimanov @ GitHub)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bsimanov/AlexaDevelopment/issues"
+  },
+  "homepage": "https://github.com/bsimanov/AlexaDevelopment#readme",
+  "dependencies": {
+    "alexa-sdk": "^1.0.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0"
+  }
+}
