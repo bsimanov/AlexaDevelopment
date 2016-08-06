@@ -32,6 +32,7 @@
     "request": "^2.74.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0"
+    "chai": "^3.5.0",
+    "sinon": "^1.17.5"
   }
 }
