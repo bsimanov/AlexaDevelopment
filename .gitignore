@@ -1,3 +1,6 @@
+# Non-public configuration file
+.env.json
+
 # VS Code
 .vscode
 
