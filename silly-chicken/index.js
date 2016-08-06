@@ -149,8 +149,8 @@ Response.prototype = (function () {
             };
         }
         var returnResult = {
-            version: '1.0',
-            response: alexaResponse
+                version: '1.0',
+                response: alexaResponse
         };
         if (options.session && options.session.attributes) {
             returnResult.sessionAttributes = options.session.attributes;
@@ -250,7 +250,7 @@ Fact.prototype.eventHandlers.onSessionStarted = function (sessionStartedRequest,
 
 Fact.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
     //console.log("onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
-    handleNewFactRequest(response);
+    handleInformationRequest(response);
 };
 
 /**
@@ -266,15 +266,15 @@ Fact.prototype.intentHandlers = {
         handleInformationRequest(response);
     },
 
-    "JokeIntent": function (intent, session, response) {
+    "JokeIntent": function(intent, session, response) {
         handleJokeRequest(response);
     },
 
-    "WhoIntent": function (intent, session, response) {
+    "WhoIntent": function(intent, session, response) {
         handleWhoRequest(intent, response);
     },
 
-    "WhyIntent": function (intent, session, response) {
+    "WhyIntent": function(intent, session, response) {
         handleWhyRequest(response);
     },
 
@@ -298,11 +298,11 @@ function handleWhyRequest(response) {
         "Because, chicken!",
         "Because, you're a chicken!",
         "Because, uhm, chicken?"
-    ]
+    ];
 
     var rndIndex = Math.floor(Math.random() * WhyResponses.length);
     var speechText = WhyResponses[rndIndex];
-    var cardTitle = "Why card"
+    var cardTitle = "Why card";
 
     response.tellWithCard(speechText, cardTitle, speechText);
 }
@@ -340,7 +340,7 @@ function handleJokeRequest(response) {
         "Why did the chicken cross the basketball court? He heard the referee calling fowls",
         "What do you call a crazy chicken? A koo koo cluck !",
         "Why did the chicken cross the road? Who knows? It's a chicken!"
-    ]
+    ];
 
     var rndIndex = Math.floor(Math.random() * JOKES.length);
     var randomJoke = JOKES[rndIndex];
@@ -359,7 +359,7 @@ function handleInformationRequest(response) {
         "There are more chickens than people on the Earth",
         "The record flight time for a chicken is 13 seconds",
         "A group of chickens is called a flock"
-    ]
+    ];
     // Get a random space fact from the space facts list
     var rndIndex = Math.floor(Math.random() * INFO.length);
     var randomInfo = INFO[rndIndex];
