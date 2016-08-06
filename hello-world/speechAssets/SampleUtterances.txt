@@ -1,2 +1,6 @@
-HelloWorldIntent hello
-HelloWorldIntent hi
+ActionIntent {ActionType}
+
+AMAZON.HelpIntent help
+AMAZON.HelpIntent help me
+AMAZON.StopIntent stop
+AMAZON.CancelIntent cancel

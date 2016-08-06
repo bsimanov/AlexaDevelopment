@@ -4,6 +4,19 @@
       "intent": "LaunchRequest"
     },
     {
-      "intent": "HelloWorldIntent"
+      "intent": "ActionIntent",
+      "slots": [{
+        "name": "ActionType",
+        "type": "LIST_OF_ACTIONS"
+      }]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
     }]
 }
