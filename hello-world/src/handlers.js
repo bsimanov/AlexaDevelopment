@@ -1,6 +1,5 @@
-var HelpIntent = require('./intents/HelpIntent')
-var ActionIntent = require('./intents/ActionIntent')
 const constants = require('./resources/constants')
+const ActionIntent = require('./intents/ActionIntent')
 
 module.exports = {
 
