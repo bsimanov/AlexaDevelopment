@@ -21,11 +21,12 @@ module.exports = {
         var speechText = constants.outputSpeech.ActionIntentDefault
 
         if (slots && slots.ActionType && slots.ActionType.value) {
-            witIntent = ActionIntent.getIntent(slots.ActionType.value)
-            this.emit(witIntent)
+            ActionIntent.getIntent(slots.ActionType.value).then((witIntent) => {
+                this.emit(witIntent)
+            })
+        } else {
+            this.emit(':ask', speechText)
         }
-        
-        this.emit(':ask', speechText)
     },
 
     "AMAZON.HelpIntent": function (prefixMessage) {
