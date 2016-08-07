@@ -1,5 +1,12 @@
 ActionIntent {ActionType}
 
+AnswerIntent {MathAnswer}
+
+AMAZON.YesIntent yes
+AMAZON.YesIntent yes please
+AMAZON.YesIntent sure
+AMAZON.NoIntent no
+AMAZON.NoIntent no thanks
 AMAZON.HelpIntent help
 AMAZON.HelpIntent help me
 AMAZON.StopIntent stop
