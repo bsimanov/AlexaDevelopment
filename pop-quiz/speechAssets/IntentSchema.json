@@ -7,7 +7,7 @@
       "intent": "MathIntent"
     },
     {
-      "intent": "AnswerIntent",
+      "intent": "MathAnswerIntent",
       "slots": [{
         "name": "MathAnswer",
         "type": "AMAZON.NUMBER"

@@ -46,7 +46,7 @@ describe('handlers', function () {
   it('all handlers exist', function () {
     expect(handlers).to.be.an.object
     var handlerNames = Object.keys(handlers);
-    const expectHandlers = ["LaunchRequest", "MathIntent", "AnswerIntent", "AMAZON.NextIntent", "AMAZON.RepeatIntent", "AMAZON.YesIntent", "AMAZON.NoIntent", "AMAZON.HelpIntent", "AMAZON.StopIntent", "AMAZON.CancelIntent"]
+    const expectHandlers = ["LaunchRequest", "MathIntent", "MathAnswerIntent", "AMAZON.NextIntent", "AMAZON.RepeatIntent", "AMAZON.YesIntent", "AMAZON.NoIntent", "AMAZON.HelpIntent", "AMAZON.StopIntent", "AMAZON.CancelIntent"]
     expect(handlerNames).to.deep.equal(expectHandlers)
     for (var i = 0; i < handlerNames.length; i++) {
       expect(typeof (handlers[handlerNames[i]])).to.equal('function')
@@ -76,11 +76,11 @@ describe('handlers', function () {
     expect(response.outputSpeech.ssml).to.equal('<speak> What is two plus two? </speak>')
   })
 
-  it('AnswerIntent - Triggered without question', function () {
+  it('MathAnswerIntent - Triggered without question', function () {
     event.request = {
       type: 'IntentRequest',
       intent: {
-        name: 'AnswerIntent'
+        name: 'MathAnswerIntent'
       }
     }
 
@@ -89,11 +89,11 @@ describe('handlers', function () {
     expect(response.outputSpeech.ssml).to.equal('<speak> ' + constants.outputSpeech.HelpIntent + ' </speak>')
   })
 
-  it('AnswerIntent - Answered correctly', function () {
+  it('MathAnswerIntent - Answered correctly', function () {
     event.request = {
       type: 'IntentRequest',
       intent: {
-        name: 'AnswerIntent',
+        name: 'MathAnswerIntent',
         slots: {
           MathAnswer: {
             value: 42
@@ -110,11 +110,11 @@ describe('handlers', function () {
     expect(response.outputSpeech.ssml).to.equal('<speak> ' + constants.outputSpeech.AnswerCorrect + ' </speak>')
   })
 
-  it('AnswerIntent - Answered incorrectly', function () {
+  it('MathAnswerIntent - Answered incorrectly', function () {
     event.request = {
       type: 'IntentRequest',
       intent: {
-        name: 'AnswerIntent',
+        name: 'MathAnswerIntent',
         slots: {
           MathAnswer: {
             value: 10
@@ -132,11 +132,11 @@ describe('handlers', function () {
     expect(response.outputSpeech.ssml).to.equal('<speak> ' + util.format(constants.outputSpeech.AnswerIncorrect, correctAnswer) + ' </speak>')
   })
 
-  it('AnswerIntent - without MathAnswer.value', function () {
+  it('MathAnswerIntent - without MathAnswer.value', function () {
     event.request = {
       type: 'IntentRequest',
       intent: {
-        name: 'AnswerIntent'
+        name: 'MathAnswerIntent'
       }
     }
 

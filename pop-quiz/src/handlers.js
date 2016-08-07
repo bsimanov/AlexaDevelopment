@@ -28,8 +28,8 @@ module.exports = {
         }
     },
 
-    "AnswerIntent": function () {
-        console.log('AnswerIntent')
+    "MathAnswerIntent": function () {
+        console.log('MathAnswerIntent')
         var lastIntent = sessionState.getState(this.event.session, 'lastIntent')
         console.log(lastIntent)
         var lastQuestion = sessionState.getState(this.event.session, 'lastQuestion')

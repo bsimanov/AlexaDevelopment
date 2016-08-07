@@ -2,7 +2,7 @@ MathIntent math questions
 MathIntent to ask math questions
 MathIntent math problems
 
-AnswerIntent {MathAnswer}
+MathAnswerIntent {MathAnswer}
 
 AMAZON.NextIntent next
 AMAZON.NextIntent skip
