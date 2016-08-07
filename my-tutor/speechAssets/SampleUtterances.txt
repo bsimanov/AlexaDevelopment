@@ -1,4 +1,6 @@
-ActionIntent {ActionType}
+MathIntent math questions
+MathIntent to ask math questions
+MathIntent some math problems
 
 AnswerIntent {MathAnswer}
 

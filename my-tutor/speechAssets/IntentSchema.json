@@ -4,17 +4,13 @@
       "intent": "LaunchRequest"
     },
     {
+      "intent": "MathIntent"
+    },
+    {
       "intent": "AnswerIntent",
       "slots": [{
         "name": "MathAnswer",
         "type": "AMAZON.NUMBER"
-      }]
-    },
-    {
-      "intent": "ActionIntent",
-      "slots": [{
-        "name": "ActionType",
-        "type": "LIST_OF_ACTIONS"
       }]
     },
     {
