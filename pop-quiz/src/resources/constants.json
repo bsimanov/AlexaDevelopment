@@ -1,6 +1,6 @@
 {
     "outputSpeech": {
-        "StartSession": "Welcome to my tutor! What would you like to do? If you need help, just say help.",
+        "StartSession": "Welcome to Pop Quiz! What would you like to do? If you need help, just say help.",
         "AnswerCorrect": "Good job! Want to try more?",
         "AnswerIncorrect": "The correct answer is: %s. Want to try another?",
         "UnknownIntent": "I didn't understand that. Please try again or say help.",

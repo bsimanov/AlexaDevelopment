@@ -18,7 +18,7 @@ module.exports = {
         sessionState.setState(this.event.session, 'lastIntent', 'MathIntent')
         
         if (lastIntent == 'MathIntent' && lastQuestion != '') {
-            // Last question wasn't answered, ask it again'
+            // Last question wasn't answered, ask it again
             this.emit('AMAZON.RepeatIntent')
         } else {
             var qa = questions.math()
@@ -60,7 +60,6 @@ module.exports = {
     },
 
     "AMAZON.NextIntent": function() {
-        // Place holder... if a user asks for the next question...
         var lastIntent = sessionState.getState(this.event.session, 'lastIntent')
         sessionState.remove(this.event.session, ['lastQuestion', 'correctAnswer'])
         if (lastIntent != '') {
