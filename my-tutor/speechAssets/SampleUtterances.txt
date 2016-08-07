@@ -1,9 +1,14 @@
 MathIntent math questions
 MathIntent to ask math questions
-MathIntent some math problems
+MathIntent math problems
 
 AnswerIntent {MathAnswer}
 
+AMAZON.NextIntent next
+AMAZON.NextIntent skip
+AMAZON.RepeatIntent repeat
+AMAZON.RepeatIntent say that again
+AMAZON.RepeatIntent repeat that
 AMAZON.YesIntent yes
 AMAZON.YesIntent yes please
 AMAZON.YesIntent sure
