@@ -1,9 +1,13 @@
 {
     "outputSpeech": {
         "StartSession": "Welcome to my tutor! What would you like to do? If you need help, just say help.",
+        "AnswerCorrect": "Good job! Want to try more?",
+        "AnswerIncorrect": "The correct answer is: %s. Want to try another?",
         "UnknownIntent": "I didn't understand that. Please try again or say help.",
         "ServiceError": "There was a problem with the service, please try again.",
-        "HelpIntent": "You can say things like: math questions",
-        "StopSession": "Good bye!"
+        "NoIntent": "Ok, then what would you like to do? For help say help.",
+        "HelpIntent": "You can say things like: math questions, to repeat a question say repeat, to skip to the next question say next.",
+        "StopSession": "Good bye!",
+        "ContinuationQuestion": ["Want to try again?", "Want to try more?", "Another one?", "Shall I continue?"]
     }
 }
