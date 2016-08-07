@@ -1,7 +1,9 @@
+const util = require('util')
 const expect = require('chai').expect
 const Alexa = require('alexa-sdk');
 const handlers = require('../src/handlers')
 const constants = require('../src/resources/constants')
+const sessionState = require('../src/utils/SessionState')
 
 const applicationId = 1337
 
@@ -44,7 +46,7 @@ describe('handlers', function () {
   it('all handlers exist', function () {
     expect(handlers).to.be.an.object
     var handlerNames = Object.keys(handlers);
-    const expectHandlers = ["LaunchRequest", "MathIntent", "UnknownIntent", "ActionIntent", "AMAZON.HelpIntent", "AMAZON.StopIntent", "AMAZON.CancelIntent"]
+    const expectHandlers = ["LaunchRequest", "MathIntent", "AnswerIntent", "AMAZON.NextIntent", "AMAZON.RepeatIntent", "AMAZON.YesIntent", "AMAZON.NoIntent", "AMAZON.HelpIntent", "AMAZON.StopIntent", "AMAZON.CancelIntent"]
     expect(handlerNames).to.deep.equal(expectHandlers)
     for (var i = 0; i < handlerNames.length; i++) {
       expect(typeof (handlers[handlerNames[i]])).to.equal('function')
@@ -71,38 +73,160 @@ describe('handlers', function () {
 
     var response = callAlexa(event)
     expect(response.shouldEndSession).to.be.false
-    expect(response.outputSpeech.ssml).to.equal('<speak> What\'s 2 plus 2? </speak>')
+    expect(response.outputSpeech.ssml).to.equal('<speak> What is two plus two? </speak>')
   })
 
-  it('UnknownIntent', function () {
+  it('AnswerIntent - Triggered without question', function () {
     event.request = {
       type: 'IntentRequest',
       intent: {
-        name: 'UnknownIntent'
+        name: 'AnswerIntent'
       }
     }
 
     var response = callAlexa(event)
     expect(response.shouldEndSession).to.be.false
-    expect(response.outputSpeech.ssml).to.equal('<speak> ' + constants.outputSpeech.UnknownIntent + ' </speak>')
-    //expect(response.reprompt.outputSpeech.ssml).to.equal('<speak> Please say that again? </speak>')
+    expect(response.outputSpeech.ssml).to.equal('<speak> ' + constants.outputSpeech.HelpIntent + ' </speak>')
   })
 
-  it('ActionIntent (Default)', function () {
+  it('AnswerIntent - Answered correctly', function () {
     event.request = {
       type: 'IntentRequest',
       intent: {
-        name: 'ActionIntent'
+        name: 'AnswerIntent',
+        slots: {
+          MathAnswer: {
+            value: 42
+          }
+        }
+      }
+    }
+
+    sessionState.setState(event.session, 'lastIntent', 'MathIntent')
+    sessionState.setState(event.session, 'correctAnswer', 42)
+
+    var response = callAlexa(event)
+    expect(response.shouldEndSession).to.be.false
+    expect(response.outputSpeech.ssml).to.equal('<speak> ' + constants.outputSpeech.AnswerCorrect + ' </speak>')
+  })
+
+  it('AnswerIntent - Answered incorrectly', function () {
+    event.request = {
+      type: 'IntentRequest',
+      intent: {
+        name: 'AnswerIntent',
+        slots: {
+          MathAnswer: {
+            value: 10
+          }
+        }
+      }
+    }
+
+    const correctAnswer = 42
+    sessionState.setState(event.session, 'lastIntent', 'MathIntent')
+    sessionState.setState(event.session, 'correctAnswer', correctAnswer)
+
+    var response = callAlexa(event)
+    expect(response.shouldEndSession).to.be.false
+    expect(response.outputSpeech.ssml).to.equal('<speak> ' + util.format(constants.outputSpeech.AnswerIncorrect, correctAnswer) + ' </speak>')
+  })
+
+  it('AnswerIntent - without MathAnswer.value', function () {
+    event.request = {
+      type: 'IntentRequest',
+      intent: {
+        name: 'AnswerIntent'
+      }
+    }
+
+    const correctAnswer = 42
+    sessionState.setState(event.session, 'lastIntent', 'MathIntent')
+    sessionState.setState(event.session, 'lastQuestion', 'Unit Test Question')
+    sessionState.setState(event.session, 'correctAnswer', correctAnswer)
+
+    var response = callAlexa(event)
+    expect(response.shouldEndSession).to.be.false
+    expect(response.outputSpeech.ssml).to.equal('<speak> Unit Test Question </speak>')
+  })
+
+  it('AMAZON.NextIntent - lastIntent set', function () {
+    event.request = {
+      type: 'IntentRequest',
+      intent: {
+        name: 'AMAZON.NextIntent'
+      }
+    }
+
+    sessionState.setState(event.session, 'lastIntent', 'MathIntent')
+    sessionState.setState(event.session, 'lastQuestion', 'Unit Test Question')
+    sessionState.setState(event.session, 'correctAnswer', 'correctAnswer')
+
+    var response = callAlexa(event)
+    expect(response.shouldEndSession).to.be.false
+    expect(response.outputSpeech.ssml).to.equal('<speak> What is two plus two? </speak>')
+  })
+
+  it('AMAZON.NextIntent - lastIntent removed', function () {
+    event.request = {
+      type: 'IntentRequest',
+      intent: {
+        name: 'AMAZON.NextIntent'
+      }
+    }
+
+    sessionState.remove(event.session, 'lastIntent')
+    sessionState.setState(event.session, 'lastQuestion', 'Unit Test Question')
+    sessionState.setState(event.session, 'correctAnswer', 'correctAnswer')
+
+    var response = callAlexa(event)
+    expect(response.shouldEndSession).to.be.false
+    expect(response.outputSpeech.ssml).to.equal('<speak> ' + constants.outputSpeech.HelpIntent + ' </speak>')
+  })
+
+  it('AMAZON.RepeatIntent', function () {
+    event.request = {
+      type: 'IntentRequest',
+      intent: {
+        name: 'AMAZON.RepeatIntent'
+      }
+    }
+
+    sessionState.setState(event.session, 'lastIntent', 'MathIntent')
+    sessionState.setState(event.session, 'lastQuestion', 'Unit Test Question')
+
+    var response = callAlexa(event)
+    expect(response.shouldEndSession).to.be.false
+    expect(response.outputSpeech.ssml).to.equal('<speak> Unit Test Question </speak>')
+  })
+
+  it('AMAZON.YesIntent', function () {
+    event.request = {
+      type: 'IntentRequest',
+      intent: {
+        name: 'AMAZON.YesIntent'
       }
     }
 
     var response = callAlexa(event)
     expect(response.shouldEndSession).to.be.false
-    expect(response.outputSpeech.ssml).to.equal('<speak> ' + constants.outputSpeech.ActionIntentDefault + ' </speak>')
-    //expect(response.reprompt.outputSpeech.ssml).to.equal('<speak> Please say that again? </speak>')
+    expect(response.outputSpeech.ssml).to.equal('<speak> ' + constants.outputSpeech.HelpIntent + ' </speak>')
   })
 
-  it('AMAZON.HelpIntent', function() {
+  it('AMAZON.NoIntent', function () {
+    event.request = {
+      type: 'IntentRequest',
+      intent: {
+        name: 'AMAZON.NoIntent'
+      }
+    }
+
+    var response = callAlexa(event)
+    expect(response.shouldEndSession).to.be.false
+    expect(response.outputSpeech.ssml).to.equal('<speak> ' + constants.outputSpeech.NoIntent + ' </speak>')
+  })
+
+  it('AMAZON.HelpIntent', function () {
     event.request = {
       type: 'IntentRequest',
       intent: {
@@ -115,7 +239,7 @@ describe('handlers', function () {
     expect(response.outputSpeech.ssml).to.equal('<speak> ' + constants.outputSpeech.HelpIntent + ' </speak>')
   })
 
-  it('AMAZON.StopIntent', function() {
+  it('AMAZON.StopIntent', function () {
     event.request = {
       type: 'IntentRequest',
       intent: {
@@ -128,7 +252,7 @@ describe('handlers', function () {
     expect(response.outputSpeech.ssml).to.equal('<speak> ' + constants.outputSpeech.StopSession + ' </speak>')
   })
 
-  it('AMAZON.CancelIntent', function() {
+  it('AMAZON.CancelIntent', function () {
     event.request = {
       type: 'IntentRequest',
       intent: {
