@@ -16,8 +16,14 @@ describe('utils.Randomizer', function () {
 
         it('between 0 and 99', function () {
             sandbox.stub(Math, 'random').returns(0.42)
-            var randomNumber = randomizer.randomNumber(100)
+            var randomNumber = randomizer.randomNumber(0, 99)
             expect(randomNumber).to.equal(42)
+        })
+
+        it('between 10 and 20', function () {
+            sandbox.stub(Math, 'random').returns(0.35)
+            var randomNumber = randomizer.randomNumber(10, 20)
+            expect(randomNumber).to.equal(13)
         })
     })
 
