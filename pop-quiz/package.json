@@ -30,8 +30,7 @@
   },
   "homepage": "https://github.com/bsimanov/AlexaDevelopment#readme",
   "dependencies": {
-    "alexa-sdk": "^1.0.3",
-    "request": "^2.74.0"
+    "alexa-sdk": "^1.0.3"
   },
   "devDependencies": {
     "chai": "^3.5.0",
