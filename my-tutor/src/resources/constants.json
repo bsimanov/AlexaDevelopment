@@ -1,0 +1,9 @@
+{
+    "outputSpeech": {
+        "StartSession": "Hey! What would you like to do? If you need help, just say help.",
+        "UnknownIntent": "I didn't understand that. Please try again or say help.",
+        "ServiceError": "There was a problem with the service, please try again.",
+        "HelpIntent": "You can say things like: math questions",
+        "StopSession": "Good bye!"
+    }
+}
