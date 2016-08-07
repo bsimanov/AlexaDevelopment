@@ -23,10 +23,32 @@ describe('utils.SessionState', function () {
             expect(actual).to.equal('')
         })
 
-        it('value', function() {
+        it('value', function () {
             var session = { attributes: { testKey: 'testValue' } }
             var actual = sessionState.getState(session, 'testKey')
             expect(actual).to.equal('testValue')
+        })
+    })
+
+    describe('#remove', function () {
+        it('one key', function () {
+            var session = { attributes: { testKey: 'testValue', testKey2: 'testValue2' } }
+            sessionState.remove(session, 'testKey2')
+            expect(session.attributes).to.deep.equal({testKey: 'testValue'})
+        })
+
+        it('multiple keys', function () {
+            var session = { attributes: { testKey: 'testValue', testKey2: 'testValue2', testKey3: 'testValue3' } }
+            sessionState.remove(session, ['testKey', 'testKey3'])
+            expect(session.attributes).to.deep.equal({testKey2: 'testValue2'})
+        })
+    })
+
+    describe('#drop', function () {
+        it('everything', function () {
+            var session = { attributes: { testKey: 'testValue' } }
+            sessionState.drop(session)
+            expect(session.attributes).to.deep.equal({})
         })
     })
 })
