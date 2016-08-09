@@ -1,0 +1,9 @@
+{
+    "outputSpeech": {
+        "HelpIntent": "If you want to hear a fact, just say: tell me a fact.",
+        "facts": [
+            "A person who studies dinosaurs is known as a paleontologist.",
+            "The word dinosaur comes from the Greek language and means terrible lizard."
+        ]
+    }
+}
