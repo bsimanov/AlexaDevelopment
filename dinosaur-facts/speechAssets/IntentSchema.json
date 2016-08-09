@@ -1,0 +1,13 @@
+{
+  "intents": [
+    {
+      "intent": "LaunchRequest"
+    },
+    {
+      "intent": "InformationIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+InformationIntent for a fact
+InformationIntent to tell me a fact
+InformationIntent give me a fact
+InformationIntent tell me trivia
+InformationIntent tell me something
+InformationIntent give me something
+InformationIntent to tell me something
+InformationIntent to give me something
