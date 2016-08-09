@@ -1,7 +1,7 @@
 {
-  "name": "dinasaur-facts",
+  "name": "dinosaur-facts",
   "version": "1.0.0",
-  "description": "Alexa Skill: dinasaur facts",
+  "description": "Alexa Skill: dinosaur facts",
   "main": "index.js",
   "directories": {
     "test": "test"
